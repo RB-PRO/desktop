@@ -1,0 +1,24 @@
+{$CLEO}
+0000: NOP
+repeat
+wait 100
+until samp.Available()
+0B34: samp register_client_command "cmd" to_label @cmd
+
+while true
+wait 0
+    if 31@ == 1
+    then
+    // your code
+    end
+end
+
+:cmd
+0B12: 31@ = 31@ XOR 1
+if 31@ == 1 
+then
+0ACD: show_text_highpriority "~g~CLEO is ~r~ON~n~~w~Author:~p~ ~>~RB_PRO~<~" time 3000
+else
+0ACD: show_text_highpriority "~g~CLEO is ~r~OFF~n~~w~Author:~p~ ~>~RB_PRO~<~" time 3000
+end
+samp.CmdRet()
